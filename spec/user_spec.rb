@@ -48,6 +48,27 @@ describe "allows you to edit user's profile" do
   end
 end
 
+describe "deleting a user" do
+  before do
+    User.create(name: 'Matt', age: 25)
+    User.create(name: "Vlad", age: 30)
+  end
+
+  it "displays the delete link for a user" do
+    visit '/users'
+    click_link "Matt"
+    expect(page).to have_content "Delete"
+  end
+
+  it "deletes a user" do
+    visit '/users'
+    click_link "Matt"
+    click_link "Delete"
+    expect(page).to_not have_content "Matt"
+    expect(page).to have_content "Vlad"
+  end
+end
+
 describe "creation of new user" do
   it "takes us to a form" do
     visit '/users'
