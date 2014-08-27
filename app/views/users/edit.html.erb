@@ -1,0 +1,14 @@
+<h1>Edit User</h1>
+<ul>
+  <%= form_for @user do |f| %>
+  <li>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </li>
+  <li>
+    <%= f.label :age %>
+    <%= f.number_field :age %>
+  </li>
+  <%= f.submit :Edit! %>
+  <% end %>
+</ul>
