@@ -1,23 +1,23 @@
 require 'spec_helper'
 
-describe "how to access a user's profile" do
+feature "how to access a user's profile" do
   before do
     User.create(name: 'Matt', age: 25)
   end
 
-  it "displays the user" do
+  scenario "displays the user" do
     visit '/users'
     expect(page).to have_content "Matt"
   end
 
-  it "takes you to a user's profile upon clicking the link" do
+  scenario "takes you to a user's profile upon clicking the link" do
     visit '/users'
     click_link 'Matt'
     expect(page).to have_content 'Matt'
     expect(page).to have_content '25'
   end
 
-  it "allows you to go back to the homepage" do
+  scenario "allows you to go back to the homepage" do
     visit '/users'
     click_link 'Matt'
     click_link 'Back'
@@ -25,19 +25,19 @@ describe "how to access a user's profile" do
   end
 end
 
-describe "allows you to edit user's profile" do
+feature "allows you to edit user's profile" do
   before do
     User.create(name: 'Matt', age: 25)
   end
 
-  it "gives you an edit form" do
+  scenario "gives you an edit form" do
     visit '/users'
     click_link "Matt"
     click_link "Edit"
     expect(page).to have_content "Edit User"
   end
 
-  it "changes user's attributes" do
+  scenario "changes user's attributes" do
     visit '/users'
     click_link "Matt"
     click_link "Edit"
@@ -48,19 +48,19 @@ describe "allows you to edit user's profile" do
   end
 end
 
-describe "deleting a user" do
+feature "deleting a user" do
   before do
     User.create(name: 'Matt', age: 25)
     User.create(name: "Vlad", age: 30)
   end
 
-  it "displays the delete link for a user" do
+  scenario "displays the delete link for a user" do
     visit '/users'
     click_link "Matt"
     expect(page).to have_content "Delete"
   end
 
-  it "deletes a user" do
+  scenario "deletes a user" do
     visit '/users'
     click_link "Matt"
     click_link "Delete"
@@ -69,6 +69,10 @@ describe "deleting a user" do
   end
 end
 
+# This is the Rspec underlying of Capybara.
+# RSpec   =>   Capybara
+# describe => feature
+# it => scenario
 describe "creation of new user" do
   it "takes us to a form" do
     visit '/users'
