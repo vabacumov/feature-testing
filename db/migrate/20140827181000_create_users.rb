@@ -1,8 +1,8 @@
 class CreateUsers < ActiveRecord::Migration
   def change
     create_table :users do |t|
-      t.string :name, :required => true
-      t.integer :age, :required => true
+      t.string :name
+      t.integer :age
     end
   end
 end
