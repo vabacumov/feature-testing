@@ -1,6 +1,6 @@
 <h1>Create a new user</h1>
 <ul>
-  <%= form_for @user do |f| %>
+  <%= form_for(@user, remote: true) do |f| %>
   <li>
     <%= f.label :name %>
     <%= f.text_field :name %>
@@ -11,4 +11,9 @@
   </li>
   <%= f.submit :Create! %>
   <% end %>
+
+  <h1>Users</h1>
+  <div class="users">
+
+  </div>
 </ul>

@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    # render :new
   end
 
   # users#new only displays the form for creating a new user
@@ -14,10 +15,14 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if @user.save
-      redirect_to @user
-    else
-      render :new
+
+    respond_to do |format|
+      if @user.save
+        # format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.json { render json: @user, status: :created, location: @user }
+      else
+        render :new
+      end
     end
   end
 

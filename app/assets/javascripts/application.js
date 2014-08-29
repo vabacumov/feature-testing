@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require index
+//= require create_user
 //= require_tree .
